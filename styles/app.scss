@@ -1,0 +1,31 @@
+@import "~bootstrap/scss/bootstrap";
+
+@font-face {
+    font-family: "Biennale Regular";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../public/fonts/Biennale.otf") format("opentype");
+}
+
+html {
+    height: 100%;
+    font-family: "Biennale Regular";
+}
+
+body {
+    height: 100%;
+}
+
+#__next {
+    height: 100%;
+    display: flex;
+    flex: 1 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+}
+
+@import "./login.scss"
