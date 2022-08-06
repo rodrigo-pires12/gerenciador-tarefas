@@ -1,8 +1,11 @@
+import type { NextPage } from "next";
 import React, { useState, FormEvent } from "react";
 
 import { executeRequest } from "../services/ApiServices";
 
-const Login = () => {
+import { AccessTokenProps } from "../types/AccessTokenProps";
+
+const Login: NextPage<AccessTokenProps> = ({ setAccessToken }) => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -26,6 +29,7 @@ const Login = () => {
       localStorage.setItem("accessToken", token);
       localStorage.setItem("userName", name);
       localStorage.setItem("userMail", email);
+      setAccessToken(token);
     } catch (error: any) {
       if (error?.response?.data?.error) {
         return setError(error?.response?.data?.error);

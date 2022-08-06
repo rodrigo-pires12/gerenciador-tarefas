@@ -17,6 +17,9 @@
       color: $errorColor;
       font-weight: bold;
       font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 

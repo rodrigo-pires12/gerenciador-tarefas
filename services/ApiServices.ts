@@ -11,8 +11,6 @@ export const executeRequest = (
 
   const URL = `http://localhost:3000/api/${endpoint}`;
 
-  console.log(`Executando: ${endpoint}`);
-
   return axios.request({
     url: URL,
     method,
