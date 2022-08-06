@@ -1,11 +1,31 @@
 import { NextPage } from "next";
-import React from "react";
-import Header from "../components/Header";
+import React, { useEffect, useState } from "react";
+import Filter from "../components/Filter";
 import Footer from "../components/Footer";
-
+import Header from "../components/Header";
+import { List } from "../components/List";
+import { executeRequest } from "../services/ApiServices";
 import { AccessTokenProps } from "../types/AccessTokenProps";
+import { Task } from "../types/Task";
 
 const Home: NextPage<AccessTokenProps> = ({ setAccessToken }) => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const getFilteredList = async () => {
+    try {
+      const result = await executeRequest("task", "GET");
+      if (result && result.data) {
+        setTasks(result.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    getFilteredList();
+  }, []);
+
   const logout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userName");
@@ -16,6 +36,8 @@ const Home: NextPage<AccessTokenProps> = ({ setAccessToken }) => {
   return (
     <>
       <Header logout={logout} />
+      <Filter />
+      <List tasks={tasks} getFilteredList={getFilteredList} />
       <Footer />
     </>
   );
