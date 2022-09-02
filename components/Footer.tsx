@@ -1,9 +1,14 @@
+import { NextPage } from "next";
 import React from "react";
 
-const Footer = () => {
+type footerProps = {
+  setShowModal(e: boolean): void;
+};
+
+const Footer: NextPage<footerProps> = ({ setShowModal }) => {
   return (
     <div className="container-footer">
-      <button>
+      <button onClick={() => setShowModal(true)}>
         <img src="/assets/add.svg" />
         Adicionar Tarefa
       </button>

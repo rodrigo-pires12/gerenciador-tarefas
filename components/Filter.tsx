@@ -1,6 +1,23 @@
+import { NextPage } from "next";
 import React, { useState } from "react";
 
-const Filter = () => {
+type filterProps = {
+  periodoDe: string;
+  setPeriodoDe(s: string): void;
+  periodoAte: string;
+  setPeriodoAte(s: string): void;
+  status: string;
+  setStatus(s: string): void;
+};
+
+const Filter: NextPage<filterProps> = ({
+  periodoDe,
+  periodoAte,
+  status,
+  setPeriodoDe,
+  setPeriodoAte,
+  setStatus,
+}) => {
   const [showFilters, setShowFilters] = useState(false);
 
   return (
@@ -15,19 +32,32 @@ const Filter = () => {
         <div className="form">
           <div>
             <label htmlFor="">Data prevista de conclusão</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={periodoDe}
+              onChange={(e) => setPeriodoDe(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="">até</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={periodoAte}
+              onChange={(e) => setPeriodoAte(e.target.value)}
+            />
           </div>
           <div className="line" />
           <div>
             <label htmlFor="">Status</label>
-            <select name="" id="">
-              <option value="">Todas</option>
-              <option value="">Ativas</option>
-              <option value="">Concluídas</option>
+            <select
+              name=""
+              id=""
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <option value={0}>Todas</option>
+              <option value={1}>Ativas</option>
+              <option value={2}>Concluídas</option>
             </select>
           </div>
         </div>
@@ -36,19 +66,32 @@ const Filter = () => {
         <div className="filtrosMobile">
           <div>
             <label htmlFor="">Data prevista de conclusão</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={periodoDe}
+              onChange={(e) => setPeriodoDe(e.target.value)}
+            />
           </div>
           <div>
             <label htmlFor="">até</label>
-            <input type="date" />
+            <input
+              type="date"
+              value={periodoAte}
+              onChange={(e) => setPeriodoAte(e.target.value)}
+            />
           </div>
           <div className="line" />
           <div>
             <label htmlFor="">Status</label>
-            <select name="" id="">
-              <option value="">Todas</option>
-              <option value="">Ativas</option>
-              <option value="">Concluídas</option>
+            <select
+              name=""
+              id=""
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              <option value={0}>Todas</option>
+              <option value={1}>Ativas</option>
+              <option value={2}>Concluídas</option>
             </select>
           </div>
         </div>

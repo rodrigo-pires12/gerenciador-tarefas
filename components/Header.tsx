@@ -3,16 +3,17 @@ import React from "react";
 
 type HeaderProps = {
   logout(): void;
+  setShowModal(e: boolean): void;
 };
 
-const Header: NextPage<HeaderProps> = ({ logout }) => {
+const Header: NextPage<HeaderProps> = ({ logout, setShowModal }) => {
   const fullName = localStorage.getItem("userName");
   const userName = fullName?.split(" ") || "...";
 
   return (
     <div className="container-header">
       <img src="/assets/logo-fiap.svg" alt="Logo FIAP" className="logo" />
-      <button>
+      <button onClick={() => setShowModal(true)}>
         <span>+</span>Adicionar Tarefa
       </button>
       <div className="mobile" onClick={logout}>
