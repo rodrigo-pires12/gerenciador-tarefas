@@ -13,7 +13,7 @@ const Home: NextPage<AccessTokenProps> = ({ setAccessToken }) => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [previsionDateStart, setPrevisionDateStart] = useState("");
   const [previsionDateEnd, setPrevisionDateEnd] = useState("");
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("0");
 
   // modal
   const [showModal, setShowModal] = useState(false);
@@ -72,7 +72,7 @@ const Home: NextPage<AccessTokenProps> = ({ setAccessToken }) => {
       await executeRequest("task", "POST", body);
       await getFilteredList();
       closeModal();
-    } catch (e) {
+    } catch (e: any) {
       if (e?.response?.data?.error) {
         setError(e?.response?.data?.error);
       } else {
